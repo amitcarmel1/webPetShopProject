@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShopProject.Models.Animal>
+
+@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<div class="text-center">
+    <center>
+        <div class="dropdown">
+
+            <form>
+                <select  name= "id" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var item in ViewBag.Categories)
+                    {
+                       
+                         <option class="dropdown-item" asp-controller="Admin" asp-action="AdminPage" value="@item.CategoryId">@item.CategoryName</option>
+                    }
+                    @ViewBag.CurrentCategory
+
+                </select>
+
+                 <button type="submit" >
+                   select
+                </button>
+            </form>
+
+        </div>
+
+        <a role="button" class="btn btn-outline-secondary float-right" asp-controller="Admin" asp-action="AddAnimal">Add New</a>
+        <br />
+        <table>
+            <tr>
+                <th>Portrait</th>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img width="200" height="200" src=@item.ImgUrl /></td>
+                    <td>@item.AnimalName</td>
+                    <td><a role="button" class="btn btn-outline-info" asp-controller="Admin" asp-action="EditAnimal" asp-route-id="@item.AnimalId">Edit</a></td>
+                    <td><a role="button" class="btn btn-outline-danger" asp-controller="Admin" asp-action="DeleteAnimal" asp-route-id="@item.AnimalId">Delete</a></td>
+
+                </tr>
+            }
+        </table>
+    </center>
+
+
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShopProject.Models.Animal>
+
+@{
+    ViewData["Title"] = "Catalog Page";
+}
+
+<div class="text-center">
+    <center>
+        <div class="dropdown">
+
+
+            <form >
+                <select name="id" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                    @foreach (var item in ViewBag.Categories)
+                    {
+                        <option class="dropdown-item" value="@item.CategoryId">@item.CategoryName</option>
+                    }
+                    @ViewBag.CurrentCategory
+
+                </select>
+
+                 <button type="submit" >
+                     
+                   select
+                </button>
+            </form>
+
+        </div>
+        <br />
+        <table>
+            <tr>
+                <th>Portrait</th>
+                <th>Name</th>
+                <th>find out more and comment</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img width="200" height="200" src=@item.ImgUrl /></td>
+                    <td>@item.AnimalName</td>
+                    <td>
+                        <a class="btn btn-outline-secondary" role="button" asp-controller="Catalog" asp-action="DetailPage" asp-route-id="@item.AnimalId">Detail</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </center>
+
+
+</div>
+
